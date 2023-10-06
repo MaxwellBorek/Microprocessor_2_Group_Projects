@@ -1,0 +1,67 @@
+typedef enum {
+
+  RED = 4,
+  YELLOW = 3,
+  GREEN = 2,
+  BUZZER = 5,
+  BUTTON = 6
+
+} COLOR;
+
+void initPins(){
+  // Initialize pins as input or output
+  pinMode(RED, OUTPUT);
+  pinMode(YELLOW, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(BUZZER, OUTPUT);
+  pinMode(BUTTON, INPUT);
+
+  // Set all of the LEDs as low to keep them off for now
+  digitalWrite(RED, LOW);
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(GREEN, LOW);
+}
+
+void blinkLED(COLOR color, unsigned int ms){
+
+  unsigned int blinkTimes = ms / 500;
+  
+  //tone(BUZZER, 500, 1000);
+  for(blinkTimes; blinkTimes > 0; blinkTimes--){
+    digitalWrite(color, LOW);
+    delay(500);
+    digitalWrite(color, HIGH);
+    delay(500);
+    digitalWrite(color, LOW);
+  }
+
+}
+
+void setup() {
+  // put your setup code here, to run once:
+  initPins();
+
+  do{
+    blinkLED(RED, 1000);
+  } while(digitalRead(BUTTON) == LOW);
+}
+
+void loop() {
+  //Red on for 24 seconds but flashes for last 3 seconds
+  digitalWrite(RED, HIGH);
+  delay(21500);
+  blinkLED(RED, 3000);
+  
+
+  //Green on for 20 seconds but flashes for last 3 seconds
+  //tone(BUZZER, 500, 3000);
+  digitalWrite(GREEN, HIGH);
+  delay(17500);
+  blinkLED(GREEN, 3000);
+  
+  //Yellow on for 3 seconds
+  //tone(BUZZER, 500, 3000);
+  digitalWrite(YELLOW, HIGH);
+  delay(3000);
+  digitalWrite(YELLOW, LOW);
+}
