@@ -1,0 +1,83 @@
+#define RED 4
+#define YELLOW 3
+#define GREEN 2
+#define BUZZER 5
+#define BUTTON 6
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(RED, OUTPUT);
+  pinMode(YELLOW, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(BUZZER, OUTPUT);
+  pinMode(BUTTON, INPUT);
+  do{
+    digitalWrite(RED, HIGH);
+    delay(500);
+    digitalWrite(RED, LOW);
+    delay(500);
+  } while(digitalRead(BUTTON) == LOW);
+}
+
+void loop() {
+  //Red on for 24 seconds but flashes for last 3 seconds
+  digitalWrite(RED, HIGH);
+  delay(21500);
+  digitalWrite(BUZZER, HIGH);
+  digitalWrite(RED, LOW);
+  delay(500);
+  digitalWrite(BUZZER, LOW);
+  digitalWrite(RED, HIGH);
+  delay(500);
+  digitalWrite(BUZZER, HIGH);
+  digitalWrite(RED, LOW);
+  delay(500);
+  digitalWrite(BUZZER, LOW);
+  digitalWrite(RED, HIGH);
+  delay(500);
+  digitalWrite(BUZZER, HIGH);
+  digitalWrite(RED, LOW);
+  delay(500);
+  digitalWrite(BUZZER, LOW);
+  
+  //Green on for 20 seconds but flashes for last 3 seconds
+  digitalWrite(GREEN, HIGH);
+  delay(17500);
+  digitalWrite(BUZZER, HIGH);
+  digitalWrite(GREEN, LOW);
+  delay(500);
+  digitalWrite(BUZZER, LOW);
+  digitalWrite(GREEN, HIGH);
+  delay(500);
+  digitalWrite(BUZZER, HIGH);
+  digitalWrite(GREEN, LOW);
+  delay(500);
+  digitalWrite(BUZZER, LOW);
+  digitalWrite(GREEN, HIGH);
+  delay(500);
+  digitalWrite(BUZZER, HIGH);
+  digitalWrite(GREEN, LOW);
+  delay(500);
+  digitalWrite(BUZZER, LOW);
+  
+  //Yellow on for 3 seconds
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(BUZZER, HIGH);
+  delay(500);
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(BUZZER, LOW);
+  delay(500);
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(BUZZER, HIGH);
+  delay(500);
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(BUZZER, LOW);
+  delay(500);
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(BUZZER, HIGH);
+  delay(500);
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(BUZZER, LOW);
+  delay(500);
+  digitalWrite(YELLOW, LOW);
+}
