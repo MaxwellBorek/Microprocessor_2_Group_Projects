@@ -13,9 +13,9 @@ void setup() {
   pinMode(BUTTON, INPUT);
   do{
     digitalWrite(RED, HIGH);
-    delay(500);
+    delay(1000);
     digitalWrite(RED, LOW);
-    delay(500);
+    delay(1000);
   } while(digitalRead(BUTTON) == LOW);
 }
 
