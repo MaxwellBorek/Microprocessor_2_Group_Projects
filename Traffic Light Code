@@ -55,8 +55,6 @@ void setup() {
 
 void loop() {
 
-  noTone(BUZZER);
-
   //Red on for 24 seconds but flashes for last 3 seconds
   digitalWrite(RED, HIGH);
   delay(21000);
@@ -69,9 +67,6 @@ void loop() {
   blinkLED(GREEN, 3000);
   
   //Yellow on for 3 seconds
-  digitalWrite(YELLOW, HIGH);
-  delay(3000);
-  digitalWrite(YELLOW, LOW);
+  blinkLED(YELLOW, 3000);
 
-  tone(BUZZER, 100);
 }
