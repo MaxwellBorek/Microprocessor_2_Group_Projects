@@ -3,8 +3,8 @@ typedef enum {
   GREEN = 2,
   YELLOW = 3,
   RED = 4,
-  BUZZER = 5,
-  BUTTON = 6
+  BUTTON = 6,
+  BUZZER = 7
 
 } COLOR;
 
