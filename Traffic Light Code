@@ -24,20 +24,20 @@ void initPins(){
 
 }
 
-void blinkLED(COLOR color, unsigned int ms){
+void blinkLED(COLOR color, unsigned int blinkTime, unsigned int blinkFrequency){
 
-  unsigned int blinkTimes = ms / 1000;
+  unsigned int amountToBlink = blinkTime / blinkFrequency;
 
-  for(; blinkTimes > 0; blinkTimes--){
+  for(; amountToBlink > 0; amountToBlink--){
     tone(BUZZER, 100);
     digitalWrite(color, LOW);
     noTone(BUZZER);
-    delay(500);
+    delay(blinkFrequency);
 
     tone(BUZZER, 100);
     digitalWrite(color, HIGH);
     noTone(BUZZER);
-    delay(500);
+    delay(blinkFrequency);
 
     digitalWrite(color, LOW);
   }
@@ -49,7 +49,7 @@ void setup() {
   initPins();
 
   do{
-    blinkLED(RED, 1000);
+    blinkLED(RED, 1000, 1000);
   } while(digitalRead(BUTTON) == HIGH);
 }
 
@@ -58,15 +58,15 @@ void loop() {
   //Red on for 24 seconds but flashes for last 3 seconds
   digitalWrite(RED, HIGH);
   delay(21000);
-  blinkLED(RED, 3000);
+  blinkLED(RED, 3000, 500);
   
 
   //Green on for 20 seconds but flashes for last 3 seconds
   digitalWrite(GREEN, HIGH);
   delay(17000);
-  blinkLED(GREEN, 3000);
+  blinkLED(GREEN, 3000, 500);
   
   //Yellow on for 3 seconds
-  blinkLED(YELLOW, 3000);
+  blinkLED(YELLOW, 3000, 500);
 
 }
