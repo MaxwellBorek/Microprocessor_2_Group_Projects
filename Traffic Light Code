@@ -59,13 +59,13 @@ void loop() {
 
   //Red on for 24 seconds but flashes for last 3 seconds
   digitalWrite(RED, HIGH);
-  delay(24000);
+  delay(21000);
   blinkLED(RED, 3000);
   
 
   //Green on for 20 seconds but flashes for last 3 seconds
   digitalWrite(GREEN, HIGH);
-  delay(20000);
+  delay(17000);
   blinkLED(GREEN, 3000);
   
   //Yellow on for 3 seconds
