@@ -1,83 +1,77 @@
-#define RED 4
-#define YELLOW 3
-#define GREEN 2
-#define BUZZER 5
-#define BUTTON 6
+typedef enum {
 
-void setup() {
-  // put your setup code here, to run once:
+  GREEN = 2,
+  YELLOW = 3,
+  RED = 4,
+  BUZZER = 5,
+  BUTTON = 6
+
+} COLOR;
+
+void initPins(){
+  // Initialize pins as input or output
   pinMode(RED, OUTPUT);
   pinMode(YELLOW, OUTPUT);
   pinMode(GREEN, OUTPUT);
   pinMode(BUZZER, OUTPUT);
-  pinMode(BUTTON, INPUT);
+  // https://roboticsbackend.com/arduino-input_pullup-pinmode/
+  pinMode(BUTTON, INPUT_PULLUP);
+
+  // Set all of the LEDs as low to keep them off for now
+  digitalWrite(RED, LOW);
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(GREEN, LOW);
+
+}
+
+void blinkLED(COLOR color, unsigned int ms){
+
+  unsigned int blinkTimes = ms / 1000;
+
+  for(; blinkTimes > 0; blinkTimes--){
+    tone(BUZZER, 100);
+    digitalWrite(color, LOW);
+    noTone(BUZZER);
+    delay(500);
+
+    tone(BUZZER, 100);
+    digitalWrite(color, HIGH);
+    noTone(BUZZER);
+    delay(500);
+
+    digitalWrite(color, LOW);
+  }
+
+}
+
+void setup() {
+  // put your setup code here, to run once:
+  initPins();
+
   do{
-    digitalWrite(RED, HIGH);
-    delay(1000);
-    digitalWrite(RED, LOW);
-    delay(1000);
-  } while(digitalRead(BUTTON) == LOW);
+    blinkLED(RED, 1000);
+  } while(digitalRead(BUTTON) == HIGH);
 }
 
 void loop() {
+
+  noTone(BUZZER);
+
   //Red on for 24 seconds but flashes for last 3 seconds
   digitalWrite(RED, HIGH);
-  delay(21500);
-  digitalWrite(BUZZER, HIGH);
-  digitalWrite(RED, LOW);
-  delay(500);
-  digitalWrite(BUZZER, LOW);
-  digitalWrite(RED, HIGH);
-  delay(500);
-  digitalWrite(BUZZER, HIGH);
-  digitalWrite(RED, LOW);
-  delay(500);
-  digitalWrite(BUZZER, LOW);
-  digitalWrite(RED, HIGH);
-  delay(500);
-  digitalWrite(BUZZER, HIGH);
-  digitalWrite(RED, LOW);
-  delay(500);
-  digitalWrite(BUZZER, LOW);
+  delay(24000);
+  blinkLED(RED, 3000);
   
+
   //Green on for 20 seconds but flashes for last 3 seconds
   digitalWrite(GREEN, HIGH);
-  delay(17500);
-  digitalWrite(BUZZER, HIGH);
-  digitalWrite(GREEN, LOW);
-  delay(500);
-  digitalWrite(BUZZER, LOW);
-  digitalWrite(GREEN, HIGH);
-  delay(500);
-  digitalWrite(BUZZER, HIGH);
-  digitalWrite(GREEN, LOW);
-  delay(500);
-  digitalWrite(BUZZER, LOW);
-  digitalWrite(GREEN, HIGH);
-  delay(500);
-  digitalWrite(BUZZER, HIGH);
-  digitalWrite(GREEN, LOW);
-  delay(500);
-  digitalWrite(BUZZER, LOW);
+  delay(20000);
+  blinkLED(GREEN, 3000);
   
   //Yellow on for 3 seconds
   digitalWrite(YELLOW, HIGH);
-  digitalWrite(BUZZER, HIGH);
-  delay(500);
-  digitalWrite(YELLOW, HIGH);
-  digitalWrite(BUZZER, LOW);
-  delay(500);
-  digitalWrite(YELLOW, HIGH);
-  digitalWrite(BUZZER, HIGH);
-  delay(500);
-  digitalWrite(YELLOW, HIGH);
-  digitalWrite(BUZZER, LOW);
-  delay(500);
-  digitalWrite(YELLOW, HIGH);
-  digitalWrite(BUZZER, HIGH);
-  delay(500);
-  digitalWrite(YELLOW, HIGH);
-  digitalWrite(BUZZER, LOW);
-  delay(500);
+  delay(3000);
   digitalWrite(YELLOW, LOW);
+
+  tone(BUZZER, 100);
 }
