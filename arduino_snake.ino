@@ -30,7 +30,7 @@ void setup() {
     // MPU was found, game will be played with gyroscope
     ctrl = GYRO;
     
-    // set gyro range to +- 500 deg/s
+    // set gyro range to +- 2000 deg/s
     mpu.setGyroRange(MPU6050_RANGE_2000_DEG);
     
     // set filter bandwidth to 5 Hz
@@ -47,6 +47,8 @@ void setup() {
 
   }
   else{
+
+    # TODO: add the joystick init code here
 
     Serial.println("Gyro not detected!");
     // MPU was not found, game will be played with joystick
@@ -108,6 +110,8 @@ COORDS extractFromGyro(){
 COORDS extractFromJoystick(){
   COORDS result;
 
+  # TODO: add the gyro code here
+  
   result.x = 0;
   result.y = 0;
   
